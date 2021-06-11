@@ -1,6 +1,6 @@
 <?php
 
-namespace Goletter\EasyTBK\taobao;
+namespace Goletter\EasyTBK\TaoBao;
 
 /**
  * 返回的默认类

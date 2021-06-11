@@ -1,6 +1,6 @@
 ﻿<?php
 
-namespace Goletter\EasyTBK\suning;
+namespace Goletter\EasyTBK\SuNing;
 
 class RequestCheckUtil
 {

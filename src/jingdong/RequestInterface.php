@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: niugengyun
+ * User: Goletter
  * Date: 2019/1/8
  * Time: 15:54
  */
 
-namespace Goletter\EasyTBK\jingdong;
+namespace Goletter\EasyTBK\JingDong;
 
 
 interface RequestInterface

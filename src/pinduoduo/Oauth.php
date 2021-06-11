@@ -1,5 +1,5 @@
 <?php
-namespace Goletter\EasyTBK\pinduoduo;
+namespace Goletter\EasyTBK\PinDuoDuo;
 
 
 class Oauth
@@ -28,14 +28,12 @@ class Oauth
         } else {
             $url = $this->sellerCodeUrl . '?response_type=code&client_id=' . $this->clientId . '&redirect_uri=' . $this->redirectUri;
         }
-//        header('Location: '.$url);
-//        exit();
-        dd($url);
+        header('Location: '.$url);
+        exit();
     }
 
     public function getToken($code)
     {
         $url = $this->tokenUrl . '';
-        dd($url);
     }
 }

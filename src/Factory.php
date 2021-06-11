@@ -2,21 +2,18 @@
 
 namespace Goletter\EasyTBK;
 
-use Goletter\EasyTBK\taobao\Application as TaoBao;
-use Goletter\EasyTBK\pinduoduo\Application as PinDuoDuo;
-use Goletter\EasyTBK\jingdong\Application as JingDong;
-use Goletter\EasyTBK\Vip\Application as Vip;
-use Goletter\EasyTBK\suning\Application as SuNing;
-use Goletter\EasyTBK\Vip\Osp\Context\InvocationContext;
+use Goletter\EasyTBK\TaoBao\Application as TaoBao;
+use Goletter\EasyTBK\PinDuoDuo\Application as PinDuoDuo;
+use Goletter\EasyTBK\JingDong\Application as JingDong;
+use Goletter\EasyTBK\SuNing\Application as SuNing;
 
 /**
  * Class Factory.
  *
- * @method TaoBao taobao()
- * @method PinDuoDuo pinduoduo()
- * @method JingDong jingdong()
- * @method Vip vip()
- * @method SuNing suning()
+ * @method TaoBao taobao($config = [])
+ * @method PinDuoDuo pinduoduo($config = [])
+ * @method JingDong jingdong($config = [])
+ * @method SuNing suning($config = [])
  */
 class Factory
 {
@@ -77,6 +74,9 @@ class Factory
         }
 
         if (count($config) == 0) {
+            if (!function_exists('config')) {
+                throw new \InvalidArgumentException('The config requires api keys.');
+            };
             $config = config("{$this->getConfigName ()}.{$name}", []);
         }
         $config = $this->getConfig($name, $config);
@@ -115,12 +115,6 @@ class Factory
             }
             return array_only($config, ['app_key', 'app_secret', 'format']);
         }
-        if ($name == "vip") {
-            if (!array_key_exists('app_key', $config) || !array_key_exists('app_secret', $config)) {
-                throw new \InvalidArgumentException('The vip client requires app_key and app_secret.');
-            }
-            return array_only($config, ['app_key', 'app_secret', 'access_token', 'format']);
-        }
         if ($name == "suning") {
             if (!array_key_exists('app_key', $config) || !array_key_exists('app_secret', $config)) {
                 throw new \InvalidArgumentException('The suning client requires app_key and app_secret.');
@@ -134,8 +128,6 @@ class Factory
      * Get the topclient client.
      *
      * @param string[] $auth
-     *
-     * @return CloudsearchClient
      */
     protected function getClient(string $name, array $config)
     {
@@ -158,14 +150,6 @@ class Factory
             $c->appKey = $config['app_key'];
             $c->appSecret = $config['app_secret'];
             $c->format = isset($config['format']) ? $config['format'] : 'json';
-            return $c;
-        }
-        if ($name == "vip") {
-            $c = InvocationContext::getInstance();
-            $c->setAppKey($config['app_key']);
-            $c->setAppSecret($config['app_secret']);
-            $c->setAccessToken($config['access_token']);
-            $c->setAppURL('https://gw.vipapis.com/');
             return $c;
         }
         if ($name == "suning") {

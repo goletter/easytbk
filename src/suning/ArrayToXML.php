@@ -1,6 +1,6 @@
 <?php
 
-namespace Goletter\EasyTBK\suning;
+namespace Goletter\EasyTBK\SuNing;
 
 class ArrayToXML
 {
@@ -17,7 +17,7 @@ class ArrayToXML
      */
     public static function init($version, $encoding)
     {
-        self::$doc = new DomDocument($version, $encoding);
+        self::$doc = new \DomDocument($version, $encoding);
         self::$doc->formatOutput = true;
     }
 
@@ -45,10 +45,10 @@ class ArrayToXML
     /**
      * 递归转换
      *
-     * @param array $array 数组
-     * @param string $nodeName 节点名称
-     *
-     * @return object (DOMElement)
+     * @param $array
+     * @param $nodeName
+     * @param $parentNode
+     * @return false
      */
     private static function convert($array, $nodeName, $parentNode)
     {

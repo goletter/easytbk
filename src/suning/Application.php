@@ -1,6 +1,6 @@
 <?php
 
-namespace Goletter\EasyTBK\suning;
+namespace Goletter\EasyTBK\SuNing;
 
 class Application
 {
@@ -35,7 +35,7 @@ class Application
     /**
      * @return string
      */
-    public function getAppkey(): string
+    public function getAppkey()
     {
         return $this->appkey;
     }
@@ -43,7 +43,7 @@ class Application
     /**
      * @param string $appkey
      */
-    public function setAppkey(string $appkey): void
+    public function setAppkey(string $appkey)
     {
         $this->appkey = $appkey;
     }
@@ -51,7 +51,7 @@ class Application
     /**
      * @return string
      */
-    public function getAppSecret(): string
+    public function getAppSecret()
     {
         return $this->appSecret;
     }
@@ -59,7 +59,7 @@ class Application
     /**
      * @param string $appSecret
      */
-    public function setAppSecret(string $appSecret): void
+    public function setAppSecret(string $appSecret)
     {
         $this->appSecret = $appSecret;
     }
@@ -67,7 +67,7 @@ class Application
     /**
      * @return string
      */
-    public function getFormat(): string
+    public function getFormat()
     {
         return $this->format;
     }
@@ -75,7 +75,7 @@ class Application
     /**
      * @param string $format
      */
-    public function setFormat(string $format): void
+    public function setFormat(string $format)
     {
         $this->format = $format;
     }
@@ -114,11 +114,12 @@ class Application
 
     /**
      * 发送请求
-     *
-     * @param string $url
-     * @param json|xml $postFields
-     *            $param array $header
-     * @return json xml
+     * 
+     * @param $url
+     * @param null $postFields
+     * @param array $header
+     * @return bool|string
+     * @throws \Exception
      */
     public function curl($url, $postFields = null, $header = array())
     {
@@ -143,11 +144,11 @@ class Application
         $response = curl_exec($ch);
 
         if (curl_errno($ch)) {
-            throw new Exception(curl_error($ch), 0);
+            throw new \Exception(curl_error($ch), 0);
         } else {
             $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             if (200 !== $httpStatusCode) {
-                throw new Exception($response, $httpStatusCode);
+                throw new \Exception($response, $httpStatusCode);
             }
         }
         curl_close($ch);
@@ -156,9 +157,9 @@ class Application
 
     /**
      * 准备发送的参数及检查验证
-     *
-     * @param obj $request
-     * @return json xml
+     * 
+     * @param $request
+     * @return bool|string
      */
     public function execute($request)
     {
@@ -167,7 +168,7 @@ class Application
             try {
                 $request->check();
             } catch (\Exception $e) {
-                dd($e->__toString());
+                die($e->__toString());
             }
         }
         // 获取业务参数
@@ -197,7 +198,7 @@ class Application
         try {
             $resp = $this->curl($this->serverUrl . "/" . $request->getApiMethodName(), $apiParams, $signHeader);
         } catch (\Exception $e) {
-            dd($e->__toString());
+            die($e->__toString());
         }
         return $resp;
     }
