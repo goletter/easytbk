@@ -1,6 +1,5 @@
 {
     "name": "goletter/easytbk",
-    "type": "library",
     "description": "淘客六合一SDK，支持淘宝联盟、京东联盟、多多进宝、唯品会、苏宁、蘑菇街. 微信:HupGoletter",
     "keywords": ["淘宝客","淘宝客SDK"],
     "homepage": "https://github.com/goletter/easytbk",
