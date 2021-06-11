@@ -49,6 +49,10 @@ class JdUnionGoodsJingfenQueryRequest implements RequestInterface
      */
     private $pageIndex;
 
+    private $groupId;
+
+    private $ownerUnionId;
+
     /**
      * @return mixed
      */
@@ -129,6 +133,39 @@ class JdUnionGoodsJingfenQueryRequest implements RequestInterface
         $this->pageIndex = $pageIndex;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getGroupId()
+    {
+        return $this->groupId;
+    }
+
+    /**
+     * @param $groupId
+     */
+    public function setGroupId($groupId): void
+    {
+        $this->groupId = $groupId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOwnerUnionId()
+    {
+        return $this->ownerUnionId;
+    }
+
+    /**
+     * @param $ownerUnionId
+     */
+    public function setOwnerUnionId($ownerUnionId): void
+    {
+        $this->ownerUnionId = $ownerUnionId;
+    }
+
     /**
      * @return string
      */
@@ -147,7 +184,9 @@ class JdUnionGoodsJingfenQueryRequest implements RequestInterface
             'pageSize' => $this->pageSize,
             'eliteId' => $this->eliteId,
             'sortName' => $this->sortName,
-            'pageIndex' => $this->pageIndex
+            'pageIndex' => $this->pageIndex,
+            'groupId' => $this->groupId,
+            'ownerUnionId' => $this->ownerUnionId,
         ];
 
         return json_encode(['goodsReq' => $params]);
