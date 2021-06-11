@@ -1,0 +1,32 @@
+{
+    "name": "goletter/easytbk",
+    "type": "library",
+    "description": "淘客六合一SDK，支持淘宝联盟、京东联盟、多多进宝、唯品会、苏宁、蘑菇街. 微信:HupGoletter",
+    "keywords": ["淘宝客","淘宝客SDK"],
+    "homepage": "https://github.com/goletter/easytbk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Goletter",
+            "homepage": "https://www.goletter.cn"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "illuminate/support": "~5.8|~6.0|~7.0|~8.0",
+        "graham-campbell/manager": "^2.0|^3.0|^4.0",
+        "laravel/helpers": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Goletter\\EasyTBK\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Goletter\\EasyTBK\\ServiceProvider"
+            ]
+        }
+    }
+}
