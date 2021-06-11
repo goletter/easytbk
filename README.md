@@ -9,9 +9,9 @@
 
 # 联系方式
 
-微信：buxiedaima
+微信：HupGoletter
 
-QQ：515343908
+QQ：742205880
 
 
 # 安装
